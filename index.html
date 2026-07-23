@@ -3,62 +3,282 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Little Bouquet</title>
+    <title>A Special Surprise for Yukthika | Floral Bouquet</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Sealed Envelope Screen Overlay -->
+    <div class="envelope-overlay" id="envelopeOverlay">
+        <div class="envelope-card" id="envelopeCard">
+            <div class="envelope-flap" id="envelopeFlap"></div>
+            <div class="envelope-seal" id="envelopeSeal">💌</div>
+            <div class="envelope-letter" id="envelopeLetter">
+                <div class="envelope-tag">
+                    <p class="tag-title">For Dearest <span class="highlight-name">Yukthika</span> ✨</p>
+                    <p class="tag-from">From Malleswari</p>
+                </div>
+                <button class="open-btn" id="openBtn">Open Envelope ✨</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Control Toggle -->
+    <button class="music-toggle" id="musicToggle" aria-label="Toggle background music">🎵 Sound On</button>
+    <audio id="bgMusic" loop preload="auto">
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=piano-moment-114476.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Rose Petals & Particle Container -->
+    <div class="petals-container" id="petalsContainer" aria-hidden="true"></div>
+    <div class="particles" id="particles" aria-hidden="true"></div>
+
     <main class="page-shell">
         <header class="intro">
-            <p class="eyebrow">For someone special person yukthika</p>
-            <h1>A little <em>something</em> in bloom.</h1>
-            <p class="intro-copy">A hand-picked bouquet for the bright parts of your day from malleswari.</p>
+            <p class="eyebrow">For someone very special <span class="name-yukthika">Yukthika</span></p>
+            <h1>A Bouquet in <em>Bloom</em></h1>
+            <p class="intro-copy">Handcrafted with warmth and love for you, from <span class="name-malleswari">Malleswari</span>. Tap any flower to reveal its secret message.</p>
         </header>
 
-        <section class="bouquet-stage" aria-label="Interactive bouquet">
+        <section class="bouquet-stage" aria-label="Interactive SVG Bouquet">
             <div class="sun-wash" aria-hidden="true"></div>
+            
             <div class="bouquet" id="bouquet">
-                <div class="stem stem-one" aria-hidden="true"></div>
-                <div class="stem stem-two" aria-hidden="true"></div>
-                <div class="stem stem-three" aria-hidden="true"></div>
-                <div class="stem stem-four" aria-hidden="true"></div>
-                <div class="leaf leaf-one" aria-hidden="true"></div>
-                <div class="leaf leaf-two" aria-hidden="true"></div>
-                <div class="leaf leaf-three" aria-hidden="true"></div>
+                <!-- SVG Floral Bouquet -->
+                <svg class="bouquet-svg" viewBox="0 0 500 650" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <!-- Gradients -->
+                        <linearGradient id="stemGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#729762"/>
+                            <stop offset="100%" stop-color="#3d5a37"/>
+                        </linearGradient>
 
-                <button class="flower flower-sunflower" data-note="You make ordinary days feel golden." aria-label="Sunflower: reveal a note">
-                    <span class="petals"></span><span class="flower-center"></span>
-                </button>
-                <button class="flower flower-daisy" data-note="Keep a little room for wonder today." aria-label="Daisy: reveal a note">
-                    <span class="petals"></span><span class="flower-center"></span>
-                </button>
-                <button class="flower flower-coral" data-note="Your joy has a way of finding everyone nearby." aria-label="Coral flower: reveal a note">
-                    <span class="petals"></span><span class="flower-center"></span>
-                </button>
-                <button class="flower flower-lilac" data-note="Soft things can still be wonderfully strong." aria-label="Lilac flower: reveal a note">
-                    <span class="petals"></span><span class="flower-center"></span>
-                </button>
-                <span class="bud bud-one" aria-hidden="true"></span>
-                <span class="bud bud-two" aria-hidden="true"></span>
+                        <linearGradient id="leafGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#8bb179"/>
+                            <stop offset="100%" stop-color="#476840"/>
+                        </linearGradient>
 
-                <div class="paper-wrap" aria-hidden="true"><span></span></div>
+                        <linearGradient id="leafGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#a4c993"/>
+                            <stop offset="100%" stop-color="#55794d"/>
+                        </linearGradient>
+
+                        <!-- Rose Gradients -->
+                        <radialGradient id="roseRed" cx="40%" cy="40%" r="60%">
+                            <stop offset="0%" stop-color="#ff758c"/>
+                            <stop offset="50%" stop-color="#ff2a55"/>
+                            <stop offset="100%" stop-color="#b30024"/>
+                        </radialGradient>
+
+                        <radialGradient id="rosePink" cx="35%" cy="35%" r="65%">
+                            <stop offset="0%" stop-color="#ffb8d9"/>
+                            <stop offset="60%" stop-color="#f865b0"/>
+                            <stop offset="100%" stop-color="#c42375"/>
+                        </radialGradient>
+
+                        <!-- Sunflower Gradients -->
+                        <radialGradient id="sunPetal" cx="30%" cy="30%" r="70%">
+                            <stop offset="0%" stop-color="#fff275"/>
+                            <stop offset="70%" stop-color="#ffb300"/>
+                            <stop offset="100%" stop-color="#e67e00"/>
+                        </radialGradient>
+                        <radialGradient id="sunCenter" cx="40%" cy="40%" r="60%">
+                            <stop offset="0%" stop-color="#8a5327"/>
+                            <stop offset="75%" stop-color="#4a2a11"/>
+                            <stop offset="100%" stop-color="#261204"/>
+                        </radialGradient>
+
+                        <!-- Tulip Gradients -->
+                        <linearGradient id="tulipGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#ff9a9e"/>
+                            <stop offset="50%" stop-color="#fecfef"/>
+                            <stop offset="100%" stop-color="#ff6b81"/>
+                        </linearGradient>
+
+                        <!-- Lily / Lavender Gradients -->
+                        <radialGradient id="lilacGrad" cx="30%" cy="30%" r="70%">
+                            <stop offset="0%" stop-color="#e2cffc"/>
+                            <stop offset="60%" stop-color="#a575db"/>
+                            <stop offset="100%" stop-color="#6933a6"/>
+                        </radialGradient>
+
+                        <!-- Soft Daisy Pink -->
+                        <radialGradient id="daisyGrad" cx="35%" cy="35%" r="65%">
+                            <stop offset="0%" stop-color="#ffffff"/>
+                            <stop offset="70%" stop-color="#fff0f5"/>
+                            <stop offset="100%" stop-color="#ffd1dc"/>
+                        </radialGradient>
+
+                        <!-- Wrapper Ribbon Gradient -->
+                        <linearGradient id="wrapGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#fdfbf7"/>
+                            <stop offset="50%" stop-color="#f3eae1"/>
+                            <stop offset="100%" stop-color="#e3d4c5"/>
+                        </linearGradient>
+
+                        <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#ff758c"/>
+                            <stop offset="100%" stop-color="#ff416c"/>
+                        </linearGradient>
+
+                        <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feGaussianBlur stdDeviation="4" result="blur" />
+                            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                        </filter>
+                        
+                        <filter id="dropShadow" x="-10%" y="-10%" width="130%" height="130%">
+                            <feDropShadow dx="2" dy="8" stdDeviation="6" flood-color="#1f2d24" flood-opacity="0.25"/>
+                        </filter>
+                    </defs>
+
+                    <!-- Stems -->
+                    <g class="stems-group" filter="url(#dropShadow)">
+                        <path d="M 250 520 Q 210 380 150 220" stroke="url(#stemGrad)" stroke-width="7" fill="none" stroke-linecap="round"/>
+                        <path d="M 250 520 Q 230 360 200 160" stroke="url(#stemGrad)" stroke-width="8" fill="none" stroke-linecap="round"/>
+                        <path d="M 250 520 Q 250 350 250 140" stroke="url(#stemGrad)" stroke-width="9" fill="none" stroke-linecap="round"/>
+                        <path d="M 250 520 Q 270 360 310 170" stroke="url(#stemGrad)" stroke-width="8" fill="none" stroke-linecap="round"/>
+                        <path d="M 250 520 Q 300 380 360 230" stroke="url(#stemGrad)" stroke-width="7" fill="none" stroke-linecap="round"/>
+                        <path d="M 250 520 Q 220 400 120 300" stroke="url(#stemGrad)" stroke-width="6" fill="none" stroke-linecap="round"/>
+                        <path d="M 250 520 Q 280 400 380 290" stroke="url(#stemGrad)" stroke-width="6" fill="none" stroke-linecap="round"/>
+                    </g>
+
+                    <!-- Leaves -->
+                    <g class="leaves-group" filter="url(#dropShadow)">
+                        <path class="leaf-anim" d="M 190 350 C 130 330 100 270 140 260 C 170 280 185 320 190 350 Z" fill="url(#leafGrad1)"/>
+                        <path class="leaf-anim" d="M 300 360 C 360 340 390 280 350 270 C 320 290 305 330 300 360 Z" fill="url(#leafGrad2)"/>
+                        <path class="leaf-anim" d="M 220 420 C 150 430 120 380 160 360 C 190 380 210 400 220 420 Z" fill="url(#leafGrad1)"/>
+                        <path class="leaf-anim" d="M 270 410 C 340 420 370 370 330 350 C 300 370 280 390 270 410 Z" fill="url(#leafGrad2)"/>
+                        <path class="leaf-anim" d="M 240 290 C 190 260 180 200 210 210 C 230 230 240 270 240 290 Z" fill="url(#leafGrad1)"/>
+                    </g>
+
+                    <!-- Interactive Flowers Group -->
+                    <g class="flowers-group">
+
+                        <!-- Flower 1: Golden Sunflower (Top Center Left) -->
+                        <g class="flower-interactive flower-sunflower" data-name="Golden Sunflower" data-note="You make ordinary days feel golden and warm." transform="translate(195, 155)" filter="url(#dropShadow)">
+                            <g class="sun-petals">
+                                <ellipse cx="0" cy="-48" rx="12" ry="32" fill="url(#sunPetal)"/>
+                                <ellipse cx="0" cy="-48" rx="12" ry="32" fill="url(#sunPetal)" transform="rotate(30)"/>
+                                <ellipse cx="0" cy="-48" rx="12" ry="32" fill="url(#sunPetal)" transform="rotate(60)"/>
+                                <ellipse cx="0" cy="-48" rx="12" ry="32" fill="url(#sunPetal)" transform="rotate(90)"/>
+                                <ellipse cx="0" cy="-48" rx="12" ry="32" fill="url(#sunPetal)" transform="rotate(120)"/>
+                                <ellipse cx="0" cy="-48" rx="12" ry="32" fill="url(#sunPetal)" transform="rotate(150)"/>
+                                <ellipse cx="0" cy="-48" rx="12" ry="32" fill="url(#sunPetal)" transform="rotate(180)"/>
+                                <ellipse cx="0" cy="-48" rx="12" ry="32" fill="url(#sunPetal)" transform="rotate(210)"/>
+                                <ellipse cx="0" cy="-48" rx="12" ry="32" fill="url(#sunPetal)" transform="rotate(240)"/>
+                                <ellipse cx="0" cy="-48" rx="12" ry="32" fill="url(#sunPetal)" transform="rotate(270)"/>
+                                <ellipse cx="0" cy="-48" rx="12" ry="32" fill="url(#sunPetal)" transform="rotate(300)"/>
+                                <ellipse cx="0" cy="-48" rx="12" ry="32" fill="url(#sunPetal)" transform="rotate(330)"/>
+                            </g>
+                            <circle cx="0" cy="0" r="28" fill="url(#sunCenter)"/>
+                            <circle cx="0" cy="0" r="24" fill="none" stroke="#d4883b" stroke-dasharray="3,3" stroke-width="2" opacity="0.6"/>
+                        </g>
+
+                        <!-- Flower 2: Elegant Red Rose (Centerpiece) -->
+                        <g class="flower-interactive flower-rose" data-name="Velvet Rose" data-note="Here’s to studying side by side and making beautiful memories together." transform="translate(250, 245)" filter="url(#dropShadow)">
+                            <circle cx="0" cy="0" r="48" fill="url(#roseRed)"/>
+                            <!-- Layered Rose Petal Curves -->
+                            <path d="M -35 -10 C -45 25, -20 45, 10 42 C 40 38, 45 10, 35 -15 C 25 -40, -25 -45, -35 -10 Z" fill="#d90429" opacity="0.8"/>
+                            <path d="M -25 -25 C -40 0, -25 35, 10 32 C 35 28, 38 0, 20 -25 Z" fill="#ef233c" opacity="0.9"/>
+                            <path d="M -15 -15 C -25 5, -15 25, 5 22 C 22 18, 25 0, 10 -18 Z" fill="#ff4d6d"/>
+                            <path d="M -8 -8 C -15 2, -8 15, 2 12 C 12 10, 15 0, 5 -10 Z" fill="#ff758c"/>
+                            <circle cx="0" cy="-2" r="5" fill="#fff0f5" opacity="0.8"/>
+                        </g>
+
+                        <!-- Flower 3: Soft Pink Peony (Top Right) -->
+                        <g class="flower-interactive flower-peony" data-name="Pink Peony" data-note="Your joy has a lovely way of brightening up everyone around you." transform="translate(315, 175)" filter="url(#dropShadow)">
+                            <g class="peony-petals">
+                                <circle cx="0" cy="0" r="42" fill="url(#rosePink)"/>
+                                <path d="M -30 -20 Q 0 -50 30 -20 Q 40 10 20 35 Q -20 40 -35 15 Z" fill="#f783ac" opacity="0.85"/>
+                                <path d="M -20 -15 Q 0 -35 20 -15 Q 30 5 15 25 Q -15 30 -25 10 Z" fill="#ffaecc" opacity="0.9"/>
+                                <path d="M -10 -10 Q 0 -22 10 -10 Q 18 2 8 16 Q -10 20 -15 5 Z" fill="#fff0f5"/>
+                            </g>
+                            <circle cx="0" cy="0" r="8" fill="#ffd166"/>
+                        </g>
+
+                        <!-- Flower 4: Blooming Coral Tulip (Left) -->
+                        <g class="flower-interactive flower-tulip" data-name="Coral Tulip" data-note="Soft, gentle moments always make the strongest impressions." transform="translate(145, 225)" filter="url(#dropShadow)">
+                            <path d="M -28 20 C -40 -20, -20 -50, 0 -60 C 20 -50, 40 -20, 28 20 C 18 40, -18 40, -28 20 Z" fill="url(#tulipGrad)"/>
+                            <path d="M -20 15 C -30 -15, -10 -40, 0 -52 C 10 -40, 30 -15, 20 15 Z" fill="#ff758c" opacity="0.7"/>
+                            <path d="M -8 10 C -15 -10, 0 -35, 0 -35 C 0 -35, 15 -10, 8 10 Z" fill="#ffffff" opacity="0.6"/>
+                        </g>
+
+                        <!-- Flower 5: Purple Lavender Blossom (Far Left) -->
+                        <g class="flower-interactive flower-lilac" data-name="Purple Lavender" data-note="Keep a little room for magic and wonder in everything you do." transform="translate(115, 305)" filter="url(#dropShadow)">
+                            <circle cx="-15" cy="-20" r="14" fill="url(#lilacGrad)"/>
+                            <circle cx="15" cy="-20" r="14" fill="url(#lilacGrad)"/>
+                            <circle cx="-20" cy="5" r="15" fill="url(#lilacGrad)"/>
+                            <circle cx="20" cy="5" r="15" fill="url(#lilacGrad)"/>
+                            <circle cx="0" cy="-32" r="16" fill="url(#lilacGrad)"/>
+                            <circle cx="0" cy="20" r="14" fill="url(#lilacGrad)"/>
+                            <circle cx="0" cy="-5" r="18" fill="url(#lilacGrad)"/>
+                            <circle cx="0" cy="-5" r="6" fill="#fff" opacity="0.7"/>
+                        </g>
+
+                        <!-- Flower 6: Daisy Blossom (Right) -->
+                        <g class="flower-interactive flower-daisy" data-name="Sweet Daisy" data-note="Wishing you happiness, success, and endless smiles today!" transform="translate(375, 285)" filter="url(#dropShadow)">
+                            <g class="daisy-petals">
+                                <ellipse cx="0" cy="-36" rx="9" ry="24" fill="url(#daisyGrad)"/>
+                                <ellipse cx="0" cy="-36" rx="9" ry="24" fill="url(#daisyGrad)" transform="rotate(45)"/>
+                                <ellipse cx="0" cy="-36" rx="9" ry="24" fill="url(#daisyGrad)" transform="rotate(90)"/>
+                                <ellipse cx="0" cy="-36" rx="9" ry="24" fill="url(#daisyGrad)" transform="rotate(135)"/>
+                                <ellipse cx="0" cy="-36" rx="9" ry="24" fill="url(#daisyGrad)" transform="rotate(180)"/>
+                                <ellipse cx="0" cy="-36" rx="9" ry="24" fill="url(#daisyGrad)" transform="rotate(225)"/>
+                                <ellipse cx="0" cy="-36" rx="9" ry="24" fill="url(#daisyGrad)" transform="rotate(270)"/>
+                                <ellipse cx="0" cy="-36" rx="9" ry="24" fill="url(#daisyGrad)" transform="rotate(315)"/>
+                            </g>
+                            <circle cx="0" cy="0" r="16" fill="#ffb703"/>
+                            <circle cx="-3" cy="-3" r="14" fill="#ffb703"/>
+                            <circle cx="-4" cy="-4" r="4" fill="#ffffff" opacity="0.6"/>
+                        </g>
+
+                        <!-- Flower Buds -->
+                        <g class="buds-group" filter="url(#dropShadow)">
+                            <path d="M 180 100 C 170 80, 190 60, 200 80 C 205 95, 190 105, 180 100 Z" fill="#ff758c"/>
+                            <path d="M 330 110 C 320 90, 340 70, 350 90 C 355 105, 340 115, 330 110 Z" fill="#ffb300"/>
+                        </g>
+                    </g>
+
+                    <!-- Kraft Paper Bouquet Wrap & Silk Ribbon -->
+                    <g class="wrap-group" filter="url(#dropShadow)">
+                        <!-- Outer Wrap folding -->
+                        <path d="M 140 370 L 360 370 L 290 610 L 210 610 Z" fill="url(#wrapGrad)"/>
+                        <path d="M 140 370 L 250 610 L 210 610 Z" fill="#ebdcd0" opacity="0.7"/>
+                        <path d="M 360 370 L 250 610 L 290 610 Z" fill="#d9c7b8" opacity="0.6"/>
+
+                        <!-- Wrap Collar Folds -->
+                        <path d="M 120 350 Q 250 410 380 350 L 360 380 Q 250 430 140 380 Z" fill="#f5ede6"/>
+
+                        <!-- Elegant Silk Ribbon -->
+                        <path d="M 215 440 Q 250 455 285 440 Q 290 460 285 465 Q 250 480 215 465 Z" fill="url(#ribbonGrad)"/>
+                        <!-- Ribbon Bow Tails -->
+                        <path d="M 240 460 Q 220 520 190 550 Q 205 550 235 500 Z" fill="url(#ribbonGrad)"/>
+                        <path d="M 260 460 Q 280 520 310 550 Q 295 550 265 500 Z" fill="url(#ribbonGrad)"/>
+                        <circle cx="250" cy="452" r="10" fill="#ff2a55"/>
+                    </g>
+                </svg>
             </div>
-            <p class="stage-hint" id="stageHint">Choose a flower</p>
+            
+            <p class="stage-hint" id="stageHint">✨ Tap any flower to open a note ✨</p>
         </section>
 
-        <aside class="note" id="note" aria-live="polite">
-            <span class="note-mark">+</span>
-            <p>Each flower is carrying a little thought for you.</p>
+        <!-- Interactive Note Card -->
+        <aside class="note-card" id="noteCard" aria-live="polite">
+            <div class="note-header">
+                <span class="flower-badge" id="flowerBadge">🌸 Click a Flower</span>
+            </div>
+            <p class="note-text" id="noteText">Here’s to enjoying college together, studying side by side, and making memories that last forever.</p>
         </aside>
 
         <footer class="footer">
-            <span>Made with care</span>
+            <span>Made with care &amp; love</span>
             <span class="footer-line"></span>
-            <span>Keep blooming</span>
+            <span>Always keep blooming 🌸</span>
         </footer>
     </main>
+
     <script src="script.js"></script>
 </body>
 </html>
