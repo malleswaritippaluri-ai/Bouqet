@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Little Bouquet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="page-shell">
+        <header class="intro">
+            <p class="eyebrow">For someone special person yukthika</p>
+            <h1>A little <em>something</em> in bloom.</h1>
+            <p class="intro-copy">A hand-picked bouquet for the bright parts of your day from malleswari.</p>
+        </header>
+
+        <section class="bouquet-stage" aria-label="Interactive bouquet">
+            <div class="sun-wash" aria-hidden="true"></div>
+            <div class="bouquet" id="bouquet">
+                <div class="stem stem-one" aria-hidden="true"></div>
+                <div class="stem stem-two" aria-hidden="true"></div>
+                <div class="stem stem-three" aria-hidden="true"></div>
+                <div class="stem stem-four" aria-hidden="true"></div>
+                <div class="leaf leaf-one" aria-hidden="true"></div>
+                <div class="leaf leaf-two" aria-hidden="true"></div>
+                <div class="leaf leaf-three" aria-hidden="true"></div>
+
+                <button class="flower flower-sunflower" data-note="You make ordinary days feel golden." aria-label="Sunflower: reveal a note">
+                    <span class="petals"></span><span class="flower-center"></span>
+                </button>
+                <button class="flower flower-daisy" data-note="Keep a little room for wonder today." aria-label="Daisy: reveal a note">
+                    <span class="petals"></span><span class="flower-center"></span>
+                </button>
+                <button class="flower flower-coral" data-note="Your joy has a way of finding everyone nearby." aria-label="Coral flower: reveal a note">
+                    <span class="petals"></span><span class="flower-center"></span>
+                </button>
+                <button class="flower flower-lilac" data-note="Soft things can still be wonderfully strong." aria-label="Lilac flower: reveal a note">
+                    <span class="petals"></span><span class="flower-center"></span>
+                </button>
+                <span class="bud bud-one" aria-hidden="true"></span>
+                <span class="bud bud-two" aria-hidden="true"></span>
+
+                <div class="paper-wrap" aria-hidden="true"><span></span></div>
+            </div>
+            <p class="stage-hint" id="stageHint">Choose a flower</p>
+        </section>
+
+        <aside class="note" id="note" aria-live="polite">
+            <span class="note-mark">+</span>
+            <p>Each flower is carrying a little thought for you.</p>
+        </aside>
+
+        <footer class="footer">
+            <span>Made with care</span>
+            <span class="footer-line"></span>
+            <span>Keep blooming</span>
+        </footer>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
